@@ -11,7 +11,7 @@ RUN useradd -m docker
 
 # Install necessary packages
 RUN apt-get update && apt install -y --no-install-recommends \
-    curl build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip jq \
+    curl git build-essential libssl-dev libffi-dev python3 python3-venv python3-dev python3-pip jq \
     sudo docker.io \
     && apt-get -yqq install ssh \
     && rm -rf /var/lib/apt/lists/*

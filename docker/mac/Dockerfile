@@ -8,6 +8,7 @@ RUN useradd -m -s /bin/bash runner
 # Install necessary packages including .NET Core dependencies
 RUN apt-get update && apt-get install -y \
     curl \
+    git \
     jq \
     python3 \
     sudo \
