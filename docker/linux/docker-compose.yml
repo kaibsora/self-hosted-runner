@@ -1,7 +1,8 @@
 services:
   runner:
-    build: .
-    image: youssefbrr/github-actions:latest # You can use this image or build your own
+    image: ghcr.io/youssefbrr/self-hosted-runner:latest
+    # Uncomment to build locally instead of pulling from GHCR
+    # build: .
     restart: always
     env_file:
       - ../../.env
