@@ -32,14 +32,17 @@ docker-compose -f docker/mac/docker-compose.yml up -d
 
 ## Pre-built Image vs Local Build
 
-**Linux (x64)** supports both options. By default, `docker-compose up` pulls the pre-built image from GHCR — no build step required.
+Both variants support pre-built images from GHCR. By default, `docker-compose up` pulls the pre-built image — no build step required.
+
+| Variant | Image | Tag |
+|---------|-------|-----|
+| **Linux (x64)** | `ghcr.io/youssefbrr/self-hosted-runner` | `latest` |
+| **macOS / ARM64** | `ghcr.io/youssefbrr/self-hosted-runner` | `latest-arm64` |
 
 | Mode | How | When to use |
 |------|-----|-------------|
 | **Pre-built** (default) | Just run `docker-compose up` | Quick setup, no customization needed |
-| **Local build** | Uncomment `build: .` in `docker/linux/docker-compose.yml` | Custom Dockerfile changes, runner version overrides |
-
-**macOS / ARM64** builds locally only (no pre-built image available yet).
+| **Local build** | Uncomment `build: .` in the compose file | Custom Dockerfile changes, runner version overrides |
 
 ---
 
@@ -154,14 +157,17 @@ deploy:
 
 ## Publishing Images
 
-A GitHub Actions workflow automatically builds and publishes the Linux Docker image to GHCR on version tag pushes (`v*`).
+GitHub Actions workflows automatically build and publish both images to GHCR on version tag pushes (`v*`).
 
 ```sh
 git tag v1.0.0
 git push origin v1.0.0
 ```
 
-The image is published to `ghcr.io/<owner>/self-hosted-runner:<tag>`.
+| Image | Tag | Platform |
+|-------|-----|----------|
+| `ghcr.io/<owner>/self-hosted-runner` | `latest` / `v1.0.0` | linux/amd64 |
+| `ghcr.io/<owner>/self-hosted-runner` | `latest-arm64` / `v1.0.0-arm64` | linux/arm64 |
 
 ---
 

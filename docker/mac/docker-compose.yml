@@ -1,7 +1,8 @@
 services:
   runner:
-    build: .
-    image: custom-github-runner-mac:latest
+    image: ghcr.io/youssefbrr/self-hosted-runner:latest-arm64
+    # Uncomment to build locally instead of pulling from GHCR
+    # build: .
     platform: linux/arm64
     restart: always
     env_file:
