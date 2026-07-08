@@ -25,8 +25,21 @@ docker-compose -f docker/linux/docker-compose.yml up -d
 docker-compose -f docker/mac/docker-compose.yml up -d
 ```
 
-> **REG_TOKEN expires after 1 hour.** Generate a fresh one from  
+> **REG_TOKEN expires after 1 hour.** Generate a fresh one from
 > GitHub → Settings → Actions → Runners → "New self-hosted runner" before each deploy.
+
+---
+
+## Pre-built Image vs Local Build
+
+**Linux (x64)** supports both options. By default, `docker-compose up` pulls the pre-built image from GHCR — no build step required.
+
+| Mode | How | When to use |
+|------|-----|-------------|
+| **Pre-built** (default) | Just run `docker-compose up` | Quick setup, no customization needed |
+| **Local build** | Uncomment `build: .` in `docker/linux/docker-compose.yml` | Custom Dockerfile changes, runner version overrides |
+
+**macOS / ARM64** builds locally only (no pre-built image available yet).
 
 ---
 
