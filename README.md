@@ -37,6 +37,8 @@ docker-compose -f docker/mac/docker-compose.yml up -d
 - **Scalable** — Linux defaults to 2 replicas; tune with `deploy.replicas`
 - **Ephemeral mode** — run once and self-destruct (`EPHEMERAL=true`)
 - **Docker-in-Docker** — macOS image mounts the Docker socket for nested builds
+- **GitHub CLI** — `gh` pre-installed from official repos on both variants
+- **Docker CLI** — official Docker CE CLI with buildx and compose plugins
 - **Healthchecks** — built-in `pgrep run.sh` health monitoring on both variants
 
 ---
@@ -134,6 +136,19 @@ deploy:
       cpus: '0.5'
       memory: 512M
 ```
+
+---
+
+## Publishing Images
+
+A GitHub Actions workflow automatically builds and publishes the Linux Docker image to GHCR on version tag pushes (`v*`).
+
+```sh
+git tag v1.0.0
+git push origin v1.0.0
+```
+
+The image is published to `ghcr.io/<owner>/self-hosted-runner:<tag>`.
 
 ---
 
